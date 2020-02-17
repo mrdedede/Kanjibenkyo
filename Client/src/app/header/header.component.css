@@ -1,0 +1,24 @@
+.brand{
+  color: #FFFFFF;
+  transition-duration: .1s;
+}
+
+.brand:hover{
+    transition-duration: .1s;
+    color: #FFFFFF;
+    font-size: 130%;
+}
+
+.kanben-navbar{
+    background-color: #BD3B1B;
+}
+
+.btn-outline-navbar{
+  color: #D3E6A5;
+  border-color: #D3E6A5;
+}
+
+.btn-outline-navbar:hover{
+  background-color: #D3E6A5;
+  color: #BD3B1B
+}
