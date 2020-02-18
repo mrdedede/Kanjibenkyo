@@ -1,4 +1,46 @@
+<br>
+<h1 class="text-center display-4">Kanji of the day:</h1>
 <div class="container">
-  <div *ngIf="">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <div class="jumbotron">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <h1 class="display-2">{{ kanji.kanji }}</h1>
+            </div>
+            <div class="col-sm-9">
+              <div class="row">
+                <h2>JLPT level: {{ kanji.level }}</h2>
+              </div>
+              <div class="row">
+                <h2>Kun: 
+                  <span *ngFor="let kunYomi of kanji.kunYomi">{{ kunYomi }}、</span>
+                </h2>
+              </div>
+              <div class="row">
+                <h2>On: 
+                  <span *ngFor="let onYomi of kanji.onYomi">{{ onYomi }}、</span>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Meaning: 
+              <span *ngFor="let meaning of kanji.meaning">{{ meaning }}、</span>
+            </h2>
+          </div>
+          <div class="row">
+            <h2>Examples: 
+              <span *ngFor="let example of kanji.examples">{{ example }}、</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
   </div>
 </div>
