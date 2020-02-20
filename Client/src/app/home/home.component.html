@@ -8,34 +8,42 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3">
-              <h1 class="display-2">{{ kanji.kanji }}</h1>
+              <h1 class="display-2">{{ dailyKanji.kanji }}</h1>
             </div>
             <div class="col-sm-9">
-              <div class="row">
-                <h2>JLPT level: {{ kanji.level }}</h2>
-              </div>
-              <div class="row">
-                <h2>Kun: 
-                  <span *ngFor="let kunYomi of kanji.kunYomi">{{ kunYomi }}、</span>
-                </h2>
-              </div>
-              <div class="row">
-                <h2>On: 
-                  <span *ngFor="let onYomi of kanji.onYomi">{{ onYomi }}、</span>
-                </h2>
-              </div>
+              <table class="table">
+                <tr>
+                  <h5>
+                  <td>JLPT:</td>
+                  <td>{{ dailyKanji.level }}</td>
+                  </h5>
+                </tr>
+                <tr>
+                  <h5>
+                  <td>Kun:</td>
+                  <td *ngFor="let kunYomi of dailyKanji.kunYomi">{{ kunYomi }}</td>
+                  </h5>
+                </tr>
+                <tr>
+                  <h5>
+                  <td>On:</td>
+                  <td *ngFor="let onYomi of dailyKanji.onYomi">{{ onYomi }}</td>
+                  </h5>
+                </tr>
+              </table>
             </div>
-          </div>
-          <div class="row">
-            <h2>Meaning: 
-              <span *ngFor="let meaning of kanji.meaning">{{ meaning }}、</span>
-            </h2>
-          </div>
-          <div class="row">
-            <h2>Examples: 
-              <span *ngFor="let example of kanji.examples">{{ example }}、</span>
-            </h2>
-          </div>
+            <div class="row">
+              <table class="table">
+                <tr>
+                  <td><h5>Meaning:</h5></td>
+                  <td *ngFor="let meaning of dailyKanji.meaning"><h5>{{ meaning }}</h5></td>
+                </tr>
+                <tr>
+                  <td><h5>Examples:</h5></td>
+                  <td *ngFor="let example of dailyKanji.examples"><h5>{{ example }}</h5></td>
+                </tr>
+              </table>
+            </div>
         </div>
       </div>
     </div>

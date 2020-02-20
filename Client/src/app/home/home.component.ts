@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core'
 })
 export class HomeComponent implements OnInit {
 
-  kanji = {
+  dailyKanji = {
     kanji: "都",
     kunYomi: ["みやこ"],
     onYomi: ["ト","ツ"],

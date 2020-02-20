@@ -1,21 +1,18 @@
-import { Injectable } from "@angular/core"
-
-import { HttpService } from "./http.service"
+import { Injectable } from '@angular/core';
+import { HttpService } from './http.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class LoginService {
 
-  logged: boolean
+  logged: boolean = false
   user: string
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService) { }
 
-  }
-
-  login() {
-    this.logged = this.httpService.mockLogin()
-    this.user = "Dummy"
+  login(): Observable<any> {
+    return this.httpService.login()
   }
 }
