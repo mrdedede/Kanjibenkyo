@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light kanben-navbar">
   <a routerLink="home" class="navbar-brand brand">Kanben 漢勉</a>
-  <button *ngIf="!login; else: loggedTemplate" class="btn btn-outline-navbar" (click)="logIn()">
+  <button *ngIf="!logged; else: loggedTemplate" class="btn btn-outline-navbar" (click)="logIn()">
     Login
   </button>
   <ng-template #loggedTemplate>

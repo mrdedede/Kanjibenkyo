@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { NgForm } from '@angular/forms'
+
+import { LoginService } from '../shared/login.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  failed = false
+
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  onSubmit(form: NgForm) {
+    this.loginService.login(form.value).subscribe((loginData) => {
+      if(loginData.status) {
+        this.router.navigate(['home'])
+        this.loginService.logged = loginData.status
+      } else {
+        this.failed = true
+      }
+    })
+  }
 }

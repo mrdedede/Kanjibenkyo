@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private httpService: HttpService) { }
 
-  login(): Observable<any> {
-    return this.httpService.login()
+  login(loginData: any): Observable<any> {
+    return this.httpService.login(loginData)
   }
 }

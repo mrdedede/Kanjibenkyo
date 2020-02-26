@@ -1,1 +1,24 @@
-<p>login works!</p>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="container jumbotron login-container">
+      <h4 class="text-center">Log into Kanben!</h4>
+      <form class="form-group" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <input class="form-control" placeholder="Username" type="text" ngModel name="username"><br>
+        <input class="form-control" placeholder="Password" type="password" ngModel name="password">
+        <br>
+        <span class="text-danger text-center" *ngIf="failed">Something went wrong...</span>
+        <div class="row">
+          <div class="col-md text-center">
+            <button class="btn btn-login" type="submit">Submit</button>
+          </div>
+          <div class="col-md text-center">
+            <button class="btn btn-leave" type="button">Go back</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>

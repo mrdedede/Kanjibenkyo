@@ -8,9 +8,9 @@ export class HttpService {
 
   constructor() { }
 
-  login(): Observable<any> {
+  login(loginData: any): Observable<any> {
     return new Observable((observer) => {
-      observer.next({status: true, username: "Dummy"})
+      observer.next({status: true, username: loginData.username})
       observer.complete()
     })
   }

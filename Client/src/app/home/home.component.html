@@ -1,54 +1,28 @@
-<br>
-<h1 class="text-center display-4">Kanji of the day:</h1>
+<!-- <br>
 <div class="container">
   <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6">
-      <div class="jumbotron">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-3">
-              <h1 class="display-2">{{ dailyKanji.kanji }}</h1>
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-4">Here we will place something else</div>
+          <div class="col-md-3">
+            <div class="jumbotron">
+              <div class="container">
+                    <div class="row">
+                      {{ dailyKanji.kanji }}
+                    </div>
+                  <hr>
+              </div>
             </div>
-            <div class="col-sm-9">
-              <table class="table">
-                <tr>
-                  <h5>
-                  <td>JLPT:</td>
-                  <td>{{ dailyKanji.level }}</td>
-                  </h5>
-                </tr>
-                <tr>
-                  <h5>
-                  <td>Kun:</td>
-                  <td *ngFor="let kunYomi of dailyKanji.kunYomi">{{ kunYomi }}</td>
-                  </h5>
-                </tr>
-                <tr>
-                  <h5>
-                  <td>On:</td>
-                  <td *ngFor="let onYomi of dailyKanji.onYomi">{{ onYomi }}</td>
-                  </h5>
-                </tr>
-              </table>
-            </div>
-            <div class="row">
-              <table class="table">
-                <tr>
-                  <td><h5>Meaning:</h5></td>
-                  <td *ngFor="let meaning of dailyKanji.meaning"><h5>{{ meaning }}</h5></td>
-                </tr>
-                <tr>
-                  <td><h5>Examples:</h5></td>
-                  <td *ngFor="let example of dailyKanji.examples"><h5>{{ example }}</h5></td>
-                </tr>
-              </table>
-            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
 
-    </div>
+      </div>
+      <div class="col-md-2">Here we will place our announcements</div>
   </div>
+</div> -->
+<div *ngIf="logged; else: notLogged">
+  <app-logged></app-logged>
 </div>
+<ng-template #notLogged>
+  <app-not-logged></app-not-logged>
+</ng-template>
