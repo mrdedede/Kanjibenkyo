@@ -21,8 +21,8 @@
   </div>
 </div> -->
 <div *ngIf="logged; else: notLogged">
-  <app-logged></app-logged>
+  <app-logged [dailyKanji]="dailyKanji"></app-logged>
 </div>
 <ng-template #notLogged>
-  <app-not-logged></app-not-logged>
+  <app-not-logged [dailyKanji]="dailyKanji"></app-not-logged>
 </ng-template>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-logged',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logged.component.css']
 })
 export class LoggedComponent implements OnInit {
+
+  @Input() dailyKanji: any
 
   constructor() { }
 

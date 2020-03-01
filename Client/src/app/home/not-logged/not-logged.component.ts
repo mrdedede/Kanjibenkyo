@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-not-logged',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotLoggedComponent implements OnInit {
 
+  @Input() dailyKanji: any
+
+  matchingPasswords: boolean = true
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit(form: NgForm) {
+    if(form.value.password != form.value.passCheck) {
+      this.matchingPasswords = false
+    } else {
+      this.matchingPasswords = true
+      alert("You should be logged now")
+    }
+  }
 }

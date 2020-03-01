@@ -1,0 +1,31 @@
+.border-right {
+  border: 0px;
+  height: 100%;
+  border-right: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.kanji-card {
+  padding: 5px;
+  border-radius: 10%;
+  background-color: #D3D0D0;
+}
+
+.btn-kanben {
+  color: #D3E6A5;
+  background-color: #BD3B1B
+}
+
+.btn-kanben:hover {
+  background-color: lighten(#BD3B1B, 10%);
+}
+
+.sign-up {
+  background-color: #D3D0D0;
+}
+
+.btn-signup {
+  background-color:  rgb(116, 148, 42);
+  color: white;
+}
