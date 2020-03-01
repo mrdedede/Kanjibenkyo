@@ -15,4 +15,8 @@ export class LoginService {
   login(loginData: any): Observable<any> {
     return this.httpService.login(loginData)
   }
+
+  testBackend() {
+    this.httpService.testBackend()
+  }
 }
