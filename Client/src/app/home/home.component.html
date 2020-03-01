@@ -1,28 +1,13 @@
-<!-- <br>
 <div class="container">
   <div class="row">
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-md-4">Here we will place something else</div>
-          <div class="col-md-3">
-            <div class="jumbotron">
-              <div class="container">
-                    <div class="row">
-                      {{ dailyKanji.kanji }}
-                    </div>
-                  <hr>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="col-md-2">Here we will place our announcements</div>
+    <div class="col-md-9 border-right">
+      <app-logged *ngIf="logged; else: notLogged"></app-logged>
+      <ng-template #notLogged>
+        <app-not-logged></app-not-logged>
+      </ng-template>
+    </div>
+    <div class="col-md-3 text-center">
+      <app-sidebar></app-sidebar>
+    </div>
   </div>
-</div> -->
-<div *ngIf="logged; else: notLogged">
-  <app-logged></app-logged>
 </div>
-<ng-template #notLogged>
-  <app-not-logged></app-not-logged>
-</ng-template>

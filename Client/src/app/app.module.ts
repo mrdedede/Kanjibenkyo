@@ -11,7 +11,9 @@ import { HeaderComponent } from './header/header.component'
 import { KanjiComponent } from './kanji/kanji.component'
 import { LoginComponent } from './login/login.component'
 import { NotLoggedComponent } from './home/not-logged/not-logged.component'
-import { LoggedComponent } from './home/logged/logged.component'
+import { LoggedComponent } from './home/logged/logged.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './home/sidebar/sidebar.component'
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +31,9 @@ const routes: Routes = [
     KanjiComponent,
     LoginComponent,
     NotLoggedComponent,
-    LoggedComponent
+    LoggedComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     FormsModule,

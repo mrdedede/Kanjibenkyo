@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  logged: boolean = false
+  logged: boolean = true
   user: string
 
   constructor(private httpService: HttpService) { }

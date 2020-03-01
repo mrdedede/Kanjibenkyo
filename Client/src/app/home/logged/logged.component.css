@@ -1,0 +1,35 @@
+.success-level {
+  background-color: #D3E6A5;
+}
+.current-level {
+  background-color: #D3D0D0;
+}
+.blocked-level {
+  background-color: #FCDCA4;
+}
+
+.kanji-card {
+  padding: 5px;
+  background-color: #D3D0D0;
+}
+
+.border-left {
+  border: 0px;
+  height: 100%;
+  border-left: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.middle {
+  margin-top: 10%
+}
+
+.btn-kanben {
+  color: #D3E6A5;
+  background-color: #BD3B1B
+}
+
+.btn-kanben:hover {
+  background-color: lighten(#BD3B1B, 50%);
+}
