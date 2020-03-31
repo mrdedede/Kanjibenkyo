@@ -1,0 +1,22 @@
+<br>
+<h4>Daily Kanji</h4>
+<div class="kanji-card">
+  <h1 class="display-1">{{ dailyKanji.kanji }}</h1>
+  <hr>
+  <div class="text-center">
+    Kun: <span *ngFor="let kunYomi of dailyKanji.kunYomi">{{ kunYomi }}, </span>
+  </div>
+  <div class="text-center">
+    On: <span *ngFor="let onYomi of dailyKanji.onYomi">{{ onYomi }}, </span>
+  </div>
+  <div class="text-center">
+    <span class="text-center" *ngFor="let meaning of dailyKanji.meaning">{{ meaning }}, </span>
+  </div>
+  <div class="text-center" *ngFor="let examples of dailyKanji.examples">{{ examples }}</div>
+</div>
+<div class="ads">
+</div>
+<div class="podium">
+  <h2>Leaderboard</h2>
+  <hr>
+</div>

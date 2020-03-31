@@ -3,7 +3,7 @@
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <div class="container jumbotron login-container">
-      <h4 class="text-center">Log into Kanben!</h4>
+      <h4 class="text-center">Log into Kanben!</h4><br>
       <form class="form-group" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <input class="form-control" placeholder="Username" type="text" ngModel name="username"><br>
         <input class="form-control" placeholder="Password" type="password" ngModel name="password">
@@ -14,7 +14,7 @@
             <button class="btn btn-login" type="submit">Submit</button>
           </div>
           <div class="col-md text-center">
-            <button class="btn btn-leave" type="button">Go back</button>
+            <button class="btn btn-leave" type="button" (click)="location.back()">Go back</button>
           </div>
         </div>
       </form>

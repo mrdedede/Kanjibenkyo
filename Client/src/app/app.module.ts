@@ -11,7 +11,13 @@ import { HeaderComponent } from './header/header.component'
 import { KanjiComponent } from './kanji/kanji.component'
 import { LoginComponent } from './login/login.component'
 import { NotLoggedComponent } from './home/not-logged/not-logged.component'
-import { LoggedComponent } from './home/logged/logged.component'
+import { LoggedComponent } from './home/logged/logged.component';
+<<<<<<< HEAD
+import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './home/sidebar/sidebar.component'
+=======
+import { FooterComponent } from './footer/footer.component'
+>>>>>>> 4f3ace3f97c51c719b62df77d8fbd62b2f7cb6cc
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +35,13 @@ const routes: Routes = [
     KanjiComponent,
     LoginComponent,
     NotLoggedComponent,
-    LoggedComponent
+    LoggedComponent,
+<<<<<<< HEAD
+    FooterComponent,
+    SidebarComponent
+=======
+    FooterComponent
+>>>>>>> 4f3ace3f97c51c719b62df77d8fbd62b2f7cb6cc
   ],
   imports: [
     FormsModule,

@@ -1,1 +1,59 @@
-<p>logged works!</p>
+<br>
+<h2 class="text-center">Kanji by level</h2>
+<br>
+<table  *ngFor="let level of levels" class="table">
+  <tr [ngClass]="{
+    'success-level': level.passed,
+    'current-level': (!level.passed && !level.blocked),
+    'blocked-level': level.blocked
+    }">
+    <th>Level {{level.level}}</th>
+    <th>
+      <a routerLink="../level/{{level.level}}" *ngIf="level.passed; else: notPassedTest">Success</a>
+      <ng-template #notPassedTest>
+        <a routerLink="../level/{{level.level}}" *ngIf="!level.blocked; else: blockedLevelTest">
+          Current
+        </a>
+        <ng-template #blockedLevelTest>
+          <span>Blocked</span>
+        </ng-template>
+      </ng-template>
+    </th>
+  </tr>
+</table>
+<br>
+<hr>
+<br>
+<h2 class="text-center">Last Viewed Kanji</h2>
+<div class="container jumbotron kanji-card">
+  <div class="row">
+    <div class="col-md-4 text-center middle">
+      <h1 class="display-1">{{lastKanji.kanji}}</h1>
+    </div>
+    <div class="col-md-8 border-left"><br>
+      JLPT level:　<span>{{lastKanji.level}}</span><hr>
+      Kun:　<span *ngFor="let kunYomi of lastKanji.kunYomi">{{kunYomi}}　</span><hr>
+      On:　<span *ngFor="let onYomi of lastKanji.onYomi">{{onYomi}}　</span><hr>
+      Meaning:　<span *ngFor="let meaning of lastKanji.meaning">{{meaning}}　</span><hr>
+      Examples:　<span *ngFor="let examples of lastKanji.examples">{{examples}}　</span><br><br>
+    </div>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+<h2 class="text-center">My Progress</h2>
+<br>
+<div class="jumbotron kanji-card">
+  SOME DATA BULL CRAP
+  LOOK, LOOK AT THE GODDAMN GRAPH
+</div>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <button class="btn btn-kanben">Keep Studying</button>
+  </div>
+  <div class="col-md-6 text-center">
+    <button class="btn btn-kanben">Take a test</button>
+  </div>
+</div>
+<br>

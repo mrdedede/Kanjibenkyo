@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { LoginService } from './shared/login.service';
+import { Component } from '@angular/core'
+import { Location } from '@angular/common'
+
+import { LoginService } from './shared/login.service'
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,5 @@ import { LoginService } from './shared/login.service';
 })
 export class AppComponent {
   title = 'kanjibenkyo'
-  
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private location: Location) {}
 }

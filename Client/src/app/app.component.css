@@ -1,0 +1,12 @@
+.homeclass{
+  position: relative;
+  margin-top: -150px;
+  height: 200px;
+  width:100%;
+}
+
+.small-screens {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
