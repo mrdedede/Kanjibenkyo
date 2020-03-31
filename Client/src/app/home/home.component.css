@@ -6,3 +6,11 @@
 .kanji-details {
   font-size: 20px;
 }
+
+.border-right {
+  border: 0px;
+  height: 100%;
+  border-right: 1px;
+  border-style: solid;
+  border-color: black;
+}
