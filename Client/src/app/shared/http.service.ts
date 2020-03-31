@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
@@ -14,6 +14,15 @@ export class HttpService {
       observer.next({status: true, username: loginData.username})
       observer.complete()
     })
+  }
+
+  signup(signupData: any) {
+    console.log(signupData)
+    // return this.http.post("http://localhost:8000/", {
+    //   headers: {
+    //     'Content-Type' : 'application/json'
+    //   }
+    // })
   }
 
   testBackend() {

@@ -8,19 +8,8 @@ import { NgForm } from '@angular/forms';
 })
 export class NotLoggedComponent implements OnInit {
 
-  matchingPasswords: boolean = true
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onSubmit(form: NgForm) {
-    if(form.value.password != form.value.passCheck) {
-      this.matchingPasswords = false
-    } else {
-      this.matchingPasswords = true
-      alert("You should be logged now")
-    }
   }
 }

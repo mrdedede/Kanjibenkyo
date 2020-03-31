@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
 
   dailyKanji = {
     kanji: "都",
@@ -19,8 +19,5 @@ export class SidebarComponent implements OnInit {
   logged: boolean = true
   
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

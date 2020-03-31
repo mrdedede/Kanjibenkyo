@@ -1,11 +1,12 @@
-from flask import Flask, Response, jsonify
+from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Resource, Api
 from flask.views import MethodView
 import requests
 
 #URLS
 jisho = "https://jisho.org/api/v1/search/words?keyword="
+#https://jisho.org/forum/54fefc1f6e73340b1f160000-is-there-any-kind-of-search-api = "Docs"
 
 # Creating an instance with Flask
 app = Flask(__name__)
@@ -18,16 +19,8 @@ api = Api(app)
 def index():
     return jsonify("Hello World")
 
-class MainServer(MethodView):
-    def get(self):
-        r = requests.get(jisho+"外")
-        data = r.json()
-        return data
-
-    def post(self):
-        return jsonify("Hello World! 3")
-
-    def get_headers(self, environ):
-        return [('Content-Type', 'application/json')]
-
-api.add_resource(MainServer, "/MainServer")
+@app.route("/jisho/kanji/<kanji>", methods=['GET'])
+def teste(kanji):
+    r = requests.get(jisho+kanji)
+    data = r.json()
+    return data

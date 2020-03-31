@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.logged = this.loginService.logged
   }
 
+  /**
+   * This function will route the user to the login page
+   */
   logIn(){
     this.router.navigate(['login'])
   }

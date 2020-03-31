@@ -10,7 +10,7 @@ import { Location } from '@angular/common'
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   failed = false
 
@@ -18,18 +18,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     public location: Location) { }
 
-  ngOnInit() {
-  }
-
+  /**
+   * This function should send data from the client to the Login Service.
+   * @param form {NgForm}
+   */
   onSubmit(form: NgForm) {
-    // this.loginService.login(form.value).subscribe((loginData) => {
-    //   if(loginData.status) {
-    //     this.router.navigate(['home'])
-    //     this.loginService.logged = loginData.status
-    //   } else {
-    //     this.failed = true
-    //   }
-    // })
-    this.loginService.testBackend()
+    this.loginService.login(form.form.value)
   }
 }

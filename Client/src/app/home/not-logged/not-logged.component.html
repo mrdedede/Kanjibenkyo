@@ -17,22 +17,5 @@
   <button class="btn btn-kanben">Know a little more!</button>
   <hr>
   <h3>Interested? Join our community!</h3>
-  <div class="container sign-up jumbotron">
-    <h4>Sign Up for Kanben!</h4>
-    <form class="form-group" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
-      <input class="form-control" type="text" placeholder="Your e-mail address" name="email"
-      email ngModel><br>
-      <input class="form-control" type="text" placeholder="Your new username" name="username"
-      ngModel><br>
-      <input class="form-control" type="password" placeholder="Your new password" name="password"
-      password ngModel><br>
-      <input class="form-control" type="password" placeholder="Repeat your password"
-      name="passCheck" ngModel>
-      <span class="text-danger" *ngIf="!matchingPasswords">The passwords do not match!</span>
-      <br>
-      <button class="btn btn-signup" type="submit">Sign Up!</button>
-      <br>
-    </form>
-    <a [routerLink]="['../login']">Already have an account? Log In clicking here!</a>
-  </div>
+  <app-signup></app-signup>
 </div>
