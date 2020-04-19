@@ -16,12 +16,10 @@ export class LoginService {
    * This function shall send the data to the Http Service.
    * @param loginData {Object} - Data from the Log In form
    */
-  login(loginData: Object): Observable<any> {
-    return this.httpService.login(loginData)
-  }
-
-  testBackend() {
-    this.httpService.testBackend()
+  login(loginData: Object) {
+    this.httpService.login(loginData).subscribe(res => {
+      console.log(res)
+    })
   }
 
   /**
@@ -29,6 +27,8 @@ export class LoginService {
    * @param signUpData {Object} - Validated data from the Sign Up form
    */
   signup(signUpData: Object) {
-    this.httpService.signup(signUpData)
+    this.httpService.signup(signUpData).subscribe(res => {
+      console.log(res)
+    })
   }
 }

@@ -43,7 +43,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true}
+      { enableTracing: false}
     ),
     BrowserModule,
     AppRoutingModule,

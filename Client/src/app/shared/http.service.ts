@@ -10,27 +10,16 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   login(loginData: any): Observable<any> {
-    return new Observable((observer) => {
-      observer.next({status: true, username: loginData.username})
-      observer.complete()
-    })
-  }
-
-  signup(signupData: any) {
-    console.log(signupData)
-    // return this.http.post("http://localhost:8000/", {
-    //   headers: {
-    //     'Content-Type' : 'application/json'
-    //   }
-    // })
-  }
-
-  testBackend() {
     let headers = new HttpHeaders()
     .set('Authorization', 'my-auth-token')
     .set('Content-Type', 'application/json')
-    this.http.get<string>("http://localhost:8000/", {headers: headers}).subscribe((response) => {
-      console.log(response)
-    })
+    return this.http.post('http://localhost:8000/user/login', loginData, {headers: headers})
+  }
+
+  signup(signupData: any): Observable<any> {
+    let headers = new HttpHeaders()
+    .set('Authorization', 'my-auth-token')
+    .set('Content-Type', 'application/json')
+    return this.http.post('http://localhost:8000/user/signup', signupData, {headers: headers})
   }
 }
