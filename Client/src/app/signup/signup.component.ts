@@ -11,8 +11,9 @@ import { LoginService } from '../shared/login.service'
 export class SignupComponent implements OnInit {
 
   errors: string[]
+  loading: boolean
   
-  constructor(private loginService: LoginService) { }
+  constructor(public loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit {
    * and send it to login service.
    * @param form {NgForm} - Refers to the SignUp Form being exposed to the user in the moment
    */
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     this.errors = []
     if(form.form.pristine) {
       this.errors.push("An empty form can't be sent.")
@@ -31,10 +32,18 @@ export class SignupComponent implements OnInit {
       if(form.value.password != form.value.passCheck) {
         this.errors.push("The passwords are not matching.")
       } else {
-        this.loginService.signup(form.form.value)
+        this.loading = true
+        let response = await this.loginService.signup(form.form.value).toPromise()
+        // We should transform it into an observable sooner or later.
+        if(! response['error']) {
+          this.loginService.logged = true
+        } else {
+          this.errors.push("Your inputs are not valid. Please try again")
+        }
+        this.loading = false
       }
     } else {
-      this.errors.push(`Make sure your e-mail address is valid or that every field is filled`)
+      this.errors.push("Make sure your e-mail address is valid or that every field is filled")
     }
   }
 }

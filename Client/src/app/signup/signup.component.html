@@ -1,19 +1,24 @@
 <br>
-<div class="container sign-up jumbotron text-center">
-  <h4>Sign Up for Kanben!</h4>
-  <form class="form-group" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
-    <input class="form-control" type="text" placeholder="Your e-mail address" name="email"
-    email ngModel required><br>
-    <input class="form-control" type="text" placeholder="Your new username" name="username"
-    ngModel required><br>
-    <input class="form-control" type="password" placeholder="Your new password" name="password"
-    password ngModel required><br>
-    <input class="form-control" type="password" placeholder="Repeat your password"
-    name="passCheck" ngModel required>
-    <span class="text-danger" *ngIf="errors">{{errors[0]}}</span>
-    <br>
-    <button class="btn btn-login" type="submit">Sign Up!</button>
-    <br>
-  </form>
-  <a [routerLink]="['../login']">Already have an account? Log In clicking here!</a>
+<div *ngIf="!loading; else: load">
+  <div class="container sign-up jumbotron text-center">
+    <h4>Sign Up for Kanben!</h4>
+    <form class="form-group" #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+      <input class="form-control" type="text" placeholder="Your e-mail address" name="email"
+      email ngModel required><br>
+      <input class="form-control" type="password" placeholder="Your new password" name="password"
+      password ngModel required><br>
+      <input class="form-control" type="password" placeholder="Repeat your password"
+      name="passCheck" ngModel required>
+      <span class="text-danger" *ngIf="errors">{{errors[0]}}</span>
+      <br>
+      <button class="btn btn-login" type="submit">Sign Up!</button>
+      <br>
+    </form>
+    <a [routerLink]="['../login']">Already have an account? Log In clicking here!</a>
+  </div>
 </div>
+<ng-template #load>
+  <div class="spinner-border text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

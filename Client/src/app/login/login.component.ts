@@ -12,7 +12,8 @@ import { Location } from '@angular/common'
 })
 export class LoginComponent {
 
-  failed = false
+  failed: boolean = false
+  loading: boolean
 
   constructor(private loginService: LoginService,
     private router: Router,

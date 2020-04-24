@@ -1,25 +1,32 @@
 <br>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-    <div class="container jumbotron login-container text-center">
-      <h4 class="text-center">Log into Kanben!</h4><br>
-      <form class="form-group" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-        <input class="form-control" placeholder="Username" type="text" ngModel name="username"><br>
-        <input class="form-control" placeholder="Password" type="password" ngModel name="password">
-        <br>
-        <span class="text-danger text-center" *ngIf="failed">Something went wrong...</span>
-        <div class="row">
-          <div class="col-md text-center">
-            <button class="btn btn-login" type="submit">Submit</button>
+<div *ngIf="!loading; else: load">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="container jumbotron login-container text-center">
+        <h4 class="text-center">Log into Kanben!</h4><br>
+        <form class="form-group" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+          <input class="form-control" placeholder="Username" type="text" ngModel name="username"><br>
+          <input class="form-control" placeholder="Password" type="password" ngModel name="password">
+          <br>
+          <span class="text-danger text-center" *ngIf="failed">Something went wrong...</span>
+          <div class="row">
+            <div class="col-md text-center">
+              <button class="btn btn-login" type="submit">Submit</button>
+            </div>
+            <div class="col-md text-center">
+              <button class="btn btn-leave" type="button" (click)="location.back()">Go back</button>
+            </div>
           </div>
-          <div class="col-md text-center">
-            <button class="btn btn-leave" type="button" (click)="location.back()">Go back</button>
-          </div>
-        </div>
-      </form>
-      <a [routerLink]="['../signup']">Don't have an account? Create one right here!</a>
+        </form>
+        <a [routerLink]="['../signup']">Don't have an account? Create one right here!</a>
+      </div>
     </div>
+    <div class="col-md-4"></div>
   </div>
-  <div class="col-md-4"></div>
 </div>
+<ng-template #load>
+  <div class="spinner-border text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

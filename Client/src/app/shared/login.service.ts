@@ -17,9 +17,7 @@ export class LoginService {
    * @param loginData {Object} - Data from the Log In form
    */
   login(loginData: Object) {
-    this.httpService.login(loginData).subscribe(res => {
-      console.log(res)
-    })
+    return this.httpService.login(loginData)
   }
 
   /**
@@ -27,8 +25,6 @@ export class LoginService {
    * @param signUpData {Object} - Validated data from the Sign Up form
    */
   signup(signUpData: Object) {
-    this.httpService.signup(signUpData).subscribe(res => {
-      console.log(res)
-    })
+    return this.httpService.signup(signUpData)
   }
 }
