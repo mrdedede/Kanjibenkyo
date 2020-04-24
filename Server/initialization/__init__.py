@@ -2,24 +2,15 @@ from flask import Flask, Response, jsonify, request
 from flask_cors import CORS, cross_origin
 from flask_restful import Resource, Api
 from flask.views import MethodView
+from initialization import config
 import requests
 import pyrebase
+import pymongo
+import json
 
-#Firebase Configuration
-config = {
-    'apiKey': "AIzaSyBlU1AmQzjyBBRLkcN8ctSktt9UqsAxe8M",
-    'authDomain': "treinamento-angular-75cf6.firebaseapp.com",
-    'databaseURL': "https://treinamento-angular-75cf6.firebaseio.com",
-    'projectId': "treinamento-angular-75cf6",
-    'storageBucket': "treinamento-angular-75cf6.appspot.com",
-    'messagingSenderId': "357652417983",
-    'appId': "1:357652417983:web:996c92d85c21d7141ea50a",
-    'measurementId': "G-BWKFXCWGT0"
-  }
 
-#URLS
-jisho = "https://jisho.org/api/v1/search/words?keyword="
-#https://jisho.org/forum/54fefc1f6e73340b1f160000-is-there-any-kind-of-search-api = "Docs"
+#MongoDB configuration
+client = pymongo.MongoClient('localhost', 27017)
 
 # Creating an instance with Flask
 app = Flask(__name__)
@@ -28,7 +19,9 @@ CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'fireb
 # Creating the API from the APP
 api = Api(app)
 
-@app.route("/jisho/kanji/<kanji>", methods=['GET'])
+# Interface-related routes
+
+@app.route("/dictionary/kanji/<kanji>", methods=['GET'])
 def getJishoKanji(kanji):
     """
     This route should get an kanji research request from the client, get it back
@@ -39,12 +32,33 @@ def getJishoKanji(kanji):
 
     This usage has been authorized by Kim Ahlström, Jisho.org's owner.
     """
-    r = requests.get(jisho+kanji)
+    r = requests.get(config.jisho+kanji)
     data = r.json()
     return data
 
-# cred = credentials.Certificate("treinamento-angular-75cf6-firebase-adminsdk-ydwr0-0ab0181d69.json")
-# firebase_admin.initialize_app(cred)
+# As recommended by Kim, we shouldn't use Jisho's API (eventhough he authorized it), but actually
+# take the necessary info from the same sources as it does. Therefore, here we shall start the
+# process of getting rid of it.
+
+@app.route('/dictionary/sentence/<kanji>', methods=['GET'])
+def getSentence(kanji):
+    """
+    This route should get an sentence that contains the requested kanji and return it and its
+    translation (if there is one), to its client.
+
+    All sentences used in our database come from the tatoeba project, https://tatoeba.org
+    whose data is released under CC-BY 2.0 FR
+    """
+    db = client['phrase_data']
+    query_result = db['sentences'].find({"text": {"$regex": f"{kanji}"}})
+    query_list = []
+    for data in query_result:
+        del data['_id']
+        query_list.append(data)
+    return {"data": query_list}
+
+
+# User-related routes:
 
 @app.route('/user/login', methods=['POST'])
 def login():
@@ -52,7 +66,7 @@ def login():
     This route should validate and secure the inputted data
     as well as make a login request to the database.
     """
-    firebase = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config.firebase_config)
     auth = firebase.auth()
     login_data = request.get_json()
     try:
@@ -72,7 +86,7 @@ def signup():
     This route should validate and secure the inputted data
     as well as create an account for the user.
     """
-    firebase = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config.firebase_config)
     auth = firebase.auth()
     sign_data = request.get_json()
     if(sign_data['passCheck'] != sign_data['password']):

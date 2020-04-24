@@ -1,3 +1,5 @@
 # Useless Stuff #
 __pycache__
 treinamento*
+database
+config.py
