@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   logged: boolean = false
-  user: string
+  loginInfo: object
 
   constructor(private httpService: HttpService) { }
 
@@ -26,5 +26,13 @@ export class LoginService {
    */
   signup(signUpData: Object) {
     return this.httpService.signup(signUpData)
+  }
+
+  /**
+   * 
+   */
+  logOut() {
+    this.logged = false
+    this.loginInfo = {}
   }
 }

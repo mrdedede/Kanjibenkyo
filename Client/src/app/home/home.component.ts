@@ -6,13 +6,17 @@ import { LoginService } from '../shared/login.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
 
   logged: boolean
 
-  constructor(private loginService: LoginService) {}
+  constructor(public loginService: LoginService) {}
 
   ngOnInit() {
+    this.logged = this.loginService.logged
+  }
+
+  ngOnChanges() {
     this.logged = this.loginService.logged
   }
 

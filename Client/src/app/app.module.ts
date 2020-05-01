@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 
@@ -16,14 +15,6 @@ import { LoggedComponent } from './home/logged/logged.component';
 import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './home/sidebar/sidebar.component';
 import { SignupComponent } from './signup/signup.component'
-
-const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent },
-]
 
 @NgModule({
   declarations: [
@@ -41,10 +32,6 @@ const routes: Routes = [
   ],
   imports: [
     FormsModule,
-    RouterModule.forRoot(
-      routes,
-      { enableTracing: false}
-    ),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

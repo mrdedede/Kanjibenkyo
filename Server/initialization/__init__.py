@@ -1,5 +1,5 @@
 from flask import Flask, Response, jsonify, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from flask_restful import Resource, Api
 from flask.views import MethodView
 from initialization import config
@@ -36,17 +36,13 @@ def getJishoKanji(kanji):
     data = r.json()
     return data
 
-# As recommended by Kim, we shouldn't use Jisho's API (eventhough he authorized it), but actually
-# take the necessary info from the same sources as it does. Therefore, here we shall start the
-# process of getting rid of it.
-
 @app.route('/dictionary/sentence/<kanji>', methods=['GET'])
 def getSentence(kanji):
     """
     This route should get an sentence that contains the requested kanji and return it and its
     translation (if there is one), to its client.
 
-    All sentences used in our database come from the tatoeba project, https://tatoeba.org
+    All sentences used in our database come from the tatoeba project, https://tatoeba.org,
     whose data is released under CC-BY 2.0 FR
     """
     db = client['phrase_data']
@@ -71,14 +67,15 @@ def login():
     login_data = request.get_json()
     try:
         creation = auth.sign_in_with_email_and_password(
-            login_data['email'], login['password']
+            login_data['email'], login_data['password']
         )
         return creation
     except requests.HTTPError:
         return {'error': 'Wrong Password'}
     except requests.ConnectionError:
         return {'error': 'Connection Error'}
-    return {'code': 200}
+    else:
+        return {'error': 'Unknown Error'}
 
 @app.route('/user/signup', methods=['POST'])
 def signup():
@@ -98,8 +95,8 @@ def signup():
             )
             return creation
         except requests.ConnectionError:
-            return {'error': 'Connection Error'}
+            return {'error': "Connection Error"}
         except requests.HTTPError:
-            return {'error': 'HTTP Error'}
+            return {'error': "HTTP Error"}
         else:
-            return {'error': 'Unknown Error'}
+            return {'error': "Unknown Error"}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { NgForm } from '@angular/forms'
 
 import { LoginService } from '../shared/login.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,8 @@ export class SignupComponent implements OnInit {
   errors: string[]
   loading: boolean
   
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,24 +25,35 @@ export class SignupComponent implements OnInit {
    * and send it to login service.
    * @param form {NgForm} - Refers to the SignUp Form being exposed to the user in the moment
    */
-  async onSubmit(form: NgForm) {
+  onSubmit(form: NgForm) {
     this.errors = []
     if(form.form.pristine) {
-      this.errors.push("An empty form can't be sent.")
+      this.errors.push("Sorry, you can't have a user with no e-mail.")
     }
     else if(form.form.status != "INVALID") {
       if(form.value.password != form.value.passCheck) {
         this.errors.push("The passwords are not matching.")
       } else {
         this.loading = true
-        let response = await this.loginService.signup(form.form.value).toPromise()
-        // We should transform it into an observable sooner or later.
-        if(! response['error']) {
-          this.loginService.logged = true
-        } else {
-          this.errors.push("Your inputs are not valid. Please try again")
-        }
-        this.loading = false
+        this.loginService.signup(form.form.value).subscribe(response => {
+          if(! response['error']) {
+            this.loginService.logged = true
+            this.loginService.loginInfo = response
+          } else {
+            switch (response['error']) {
+              case "Unknown Error":
+                this.errors.push("Sorry, it seems like an Unknown Error has happened.")
+              case "HTTP Error":
+                this.errors.push(`Sorry, but it seems like your request has been rejected.
+                  What about trying a stronger password?`)
+              case "Connection Error":
+                this.errors.push(`Sorry, it seems like we have got a connection error.
+                  Please, try again later.`)
+            }
+          }
+          this.loading = false
+        })
+        this.router.navigate(['./home'])
       }
     } else {
       this.errors.push("Make sure your e-mail address is valid or that every field is filled")

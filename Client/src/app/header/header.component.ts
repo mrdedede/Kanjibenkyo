@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Input, OnChanges } from '@angular/core'
+import { Component, OnInit, Input, OnChanges } from '@angular/core'
 import { LoginService } from '../shared/login.service'
 import { Router } from '@angular/router'
 
@@ -10,8 +10,7 @@ import { Router } from '@angular/router'
 export class HeaderComponent implements OnInit, OnChanges {
   @Input() logged: boolean
 
-  constructor(private cdRef: ChangeDetectorRef,
-    public loginService: LoginService,
+  constructor( public loginService: LoginService,
     public router: Router) { }
 
   ngOnInit() {
@@ -27,5 +26,13 @@ export class HeaderComponent implements OnInit, OnChanges {
    */
   logIn(){
     this.router.navigate(['login'])
+  }
+
+  /**
+   * This function will just clear all user data from the cliente
+   */
+  logOut() {
+    this.loginService.logOut()
+    this.router.navigate(['./home'])
   }
 }
