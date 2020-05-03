@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9 border-right">
-      <app-logged *ngIf="logged; else: notLogged"></app-logged>
+      <app-logged *ngIf="isLogged(); else: notLogged"></app-logged>
       <ng-template #notLogged>
         <app-not-logged></app-not-logged>
       </ng-template>
