@@ -19,7 +19,7 @@ CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'fireb
 # Creating the API from the APP
 api = Api(app)
 
-# Interface-related routes
+# Obsolete Routes
 
 @app.route("/dictionary/kanji/<kanji>", methods=['GET'])
 def getJishoKanji(kanji):
@@ -30,19 +30,23 @@ def getJishoKanji(kanji):
     As this is an rest API, the attribute kanji of this function actually refers to the
     term kanji of the URL that is between the tags in this representation.
 
-    This usage has been authorized by Kim Ahlström, Jisho.org's owner.
+    This usage has been authorized by Kim Ahlström, Jisho.org's owner, but it's being switched to an
+    approach in witch we take information directly from its sources, as a recommendation from Kim
+    himself.
     """
     r = requests.get(config.jisho+kanji)
     data = r.json()
     return data
 
+# Interface-related routes
+
 @app.route('/dictionary/sentence/<kanji>', methods=['GET'])
-def getSentence(kanji):
+def get_sentence(kanji):
     """
-    This route should get an sentence that contains the requested kanji and return it and its
+    This route gets a sentence that contains the requested kanji and returns it and its
     translation (if there is one), to its client.
 
-    All sentences used in our database come from the tatoeba project, https://tatoeba.org,
+    All sentence data used in our database comes from the tatoeba project, https://tatoeba.org,
     whose data is released under CC-BY 2.0 FR
     """
     db = client['phrase_data']
@@ -53,6 +57,21 @@ def getSentence(kanji):
         query_list.append(data)
     return {"data": query_list}
 
+@app.route('/kanji/<level>', methods=['GET'])
+def get_level(level):
+    """
+    This route gets all the kanji that are from the specified level and returns it to the client
+
+    All kanji data used in our database comes from Tanos, http://www.tanos.co.uk/jlpt/skills/kanji/,
+    whose data is licenced under Creative Commons "BY"
+    """
+    db = client['kanji']
+    query_result = db[level].find()
+    query_list = []
+    for data in query_result:
+        del data['_id']
+        query_list.append(data)
+    return {"data": query_list}
 
 # User-related routes:
 
