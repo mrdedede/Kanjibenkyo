@@ -8,13 +8,14 @@ import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { HeaderComponent } from './header/header.component'
-import { KanjiComponent } from './kanji/kanji.component'
 import { LoginComponent } from './login/login.component'
 import { NotLoggedComponent } from './home/not-logged/not-logged.component'
-import { LoggedComponent } from './home/logged/logged.component';
-import { FooterComponent } from './footer/footer.component';
-import { SidebarComponent } from './home/sidebar/sidebar.component';
-import { SignupComponent } from './signup/signup.component'
+import { LoggedComponent } from './home/logged/logged.component'
+import { FooterComponent } from './footer/footer.component'
+import { SidebarComponent } from './home/sidebar/sidebar.component'
+import { SignupComponent } from './signup/signup.component';
+import { KanjiListComponent } from './kanji-list/kanji-list.component'
+import { KanjiCardComponent } from './kanji-list/kanji-card/kanji-card.component'
 
 @NgModule({
   declarations: [
@@ -22,13 +23,14 @@ import { SignupComponent } from './signup/signup.component'
     HomeComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    KanjiComponent,
     LoginComponent,
     NotLoggedComponent,
     LoggedComponent,
     FooterComponent,
     SidebarComponent,
-    SignupComponent
+    SignupComponent,
+    KanjiListComponent,
+    KanjiCardComponent
   ],
   imports: [
     FormsModule,

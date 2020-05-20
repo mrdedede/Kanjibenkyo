@@ -29,7 +29,7 @@ export class LoginService {
   }
 
   /**
-   * 
+   * logs the client out.
    */
   logOut() {
     this.logged = false

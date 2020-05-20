@@ -2,7 +2,7 @@ from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
 from flask_restful import Resource, Api
 from flask.views import MethodView
-from initialization import config
+from initialization import config, util
 import requests
 import pyrebase
 import pymongo
@@ -18,25 +18,6 @@ CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'fireb
 
 # Creating the API from the APP
 api = Api(app)
-
-# Obsolete Routes
-
-@app.route("/dictionary/kanji/<kanji>", methods=['GET'])
-def getJishoKanji(kanji):
-    """
-    This route should get an kanji research request from the client, get it back
-    from jisho.org (our dictionary source so far) and return the results for him.
-
-    As this is an rest API, the attribute kanji of this function actually refers to the
-    term kanji of the URL that is between the tags in this representation.
-
-    This usage has been authorized by Kim Ahlström, Jisho.org's owner, but it's being switched to an
-    approach in witch we take information directly from its sources, as a recommendation from Kim
-    himself.
-    """
-    r = requests.get(config.jisho+kanji)
-    data = r.json()
-    return data
 
 # Interface-related routes
 
@@ -88,6 +69,9 @@ def login():
         creation = auth.sign_in_with_email_and_password(
             login_data['email'], login_data['password']
         )
+        db = firebase.database()
+        user_data = db.child('users').child(util.get_user(login_data['email'])).get()
+        creation['kanji_known'] = user_data.val()['kanji_known']
         return creation
     except requests.HTTPError:
         return {'error': 'Wrong Password'}
@@ -99,8 +83,8 @@ def login():
 @app.route('/user/signup', methods=['POST'])
 def signup():
     """
-    This route should validate and secure the inputted data
-    as well as create an account for the user.
+    This route validates and secures the inputted data, creates an account for the user and
+    creates an instance for it in firebase, so we can keep track of its progress.
     """
     firebase = pyrebase.initialize_app(config.firebase_config)
     auth = firebase.auth()
@@ -112,6 +96,10 @@ def signup():
             creation = auth.create_user_with_email_and_password(
                 sign_data['email'], sign_data['password']
             )
+            new_user_data = {"kanji_known": ""}
+            db = firebase.database()
+            db.child("users").child(util.get_user(creation['email'])).set(new_user_data)
+            creation['kanji_known'] = ""
             return creation
         except requests.ConnectionError:
             return {'error': "Connection Error"}

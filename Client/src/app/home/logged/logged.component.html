@@ -1,7 +1,7 @@
 <br>
 <h2 class="text-center">Kanji by level</h2>
 <br>
-<table  *ngFor="let level of levels" class="table">
+<table *ngFor="let level of getKanjiLevel()" class="table">
   <tr [ngClass]="{
     'success-level': level.passed,
     'current-level': (!level.passed && !level.blocked),

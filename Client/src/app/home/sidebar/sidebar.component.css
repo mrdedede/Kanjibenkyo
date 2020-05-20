@@ -5,10 +5,11 @@
 }
 
 .ads {
-  height: 53%;
+  height: 25%;
 }
 
 .podium {
+  top: 75%;
   padding: 5px;
   border-radius: 2%;
   background-color: #FCDCA4;

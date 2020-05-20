@@ -6,20 +6,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class HttpService {
+  headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', ['localhost:8000'])
 
   constructor(private http: HttpClient) { }
 
   login(loginData: any): Observable<any> {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', ['localhost:8000'])
-    return this.http.post('http://localhost:8000/user/login', loginData, {headers: headers})
+    return this.http.post('http://localhost:8000/user/login', loginData, {headers: this.headers})
   }
 
   signup(signupData: any): Observable<any> {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', ['localhost:8000'])
-    return this.http.post('http://localhost:8000/user/signup', signupData, {headers: headers})
+    return this.http.post('http://localhost:8000/user/signup', signupData, {headers: this.headers})
+  }
+
+  getKanji(level: number): Observable<any> {
+    return this.http.get(`http://localhost:8000/kanji/n${level}`, {headers: this.headers})
   }
 }

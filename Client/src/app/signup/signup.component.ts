@@ -39,6 +39,8 @@ export class SignupComponent implements OnInit {
           if(! response['error']) {
             this.loginService.logged = true
             this.loginService.loginInfo = response
+            console.log(this.loginService.loginInfo)
+            this.router.navigate(['./home'])
           } else {
             switch (response['error']) {
               case "Unknown Error":
@@ -53,7 +55,6 @@ export class SignupComponent implements OnInit {
           }
           this.loading = false
         })
-        this.router.navigate(['./home'])
       }
     } else {
       this.errors.push("Make sure your e-mail address is valid or that every field is filled")

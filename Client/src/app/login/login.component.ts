@@ -30,9 +30,9 @@ export class LoginComponent {
       if(! response['error']) {
         this.loginService.logged = true
         this.loginService.loginInfo = response
+        console.log(this.loginService.loginInfo)
         this.router.navigate(['./home'])
       } else {
-        console.log("fail")
         this.failed = true
         switch (response['error']) {
           case "Unknown Error":
@@ -42,10 +42,12 @@ export class LoginComponent {
           case "Connection Error":
             this.errormsg = `Sorry, it seems like we have got a connection error.
               Please, try again later.`
+          case "Wrong Password":
+            this.errormsg = 
+            `Sorry, but we couldn't find your e-mail address or your password is wrong.`
         }
       }
       this.loading = false
-      this.router.navigate(['./home'])
     })
   }
 }

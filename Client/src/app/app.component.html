@@ -1,4 +1,6 @@
 <app-header [logged]="loginService.logged"></app-header>
 <router-outlet></router-outlet>
-<app-footer class="{{(location.path() == '/login') ? 'small-screens' : 'homeclass'}}">
+<app-footer
+  class="{{((location.path() == '/login')||(location.path() == '/signup')) 
+  ? 'small-screens' : 'homeclass'}}">
 </app-footer>
