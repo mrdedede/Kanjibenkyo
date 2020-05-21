@@ -1,7 +1,12 @@
-<div class="text-center">
-  <h1>JLPT N{{ getLevel() }} Kanji List</h1>
-  <hr>
-  <div *ngFor="let kanji of kanjiList">
-    <p>{{kanji.kanji}}</p>
+<div class="container">
+  <h1 class="text-center">JLPT N{{getLevel()}}</h1>
+  <br>
+  <div class="row">
+    <div class="col-md-2 text-center" *ngFor="let kanji of kanjiList">
+      <div class="kanji-card {{ loginService.loginInfo['kanji_known'].includes(kanji.kanji) ?
+      'studied-kanji' : 'not-studied' }}">
+        <h1 class="kanji"><a href="#" class="text-dark">{{kanji.kanji}}</a></h1>
+      </div>
+    </div>
   </div>
 </div>

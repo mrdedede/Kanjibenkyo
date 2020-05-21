@@ -18,9 +18,8 @@ export class KanjiListComponent implements OnInit {
     ) { }
   
   ngOnInit() {
-    this.httpService.getKanji(this.getLevel()).subscribe(data => {
+    this.httpService.getKanjiLevel(this.getLevel()).subscribe(data => {
       this.kanjiList = data.data
-      console.log(data)
     })
   }
 

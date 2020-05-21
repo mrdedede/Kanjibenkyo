@@ -39,7 +39,6 @@ export class SignupComponent implements OnInit {
           if(! response['error']) {
             this.loginService.logged = true
             this.loginService.loginInfo = response
-            console.log(this.loginService.loginInfo)
             this.router.navigate(['./home'])
           } else {
             switch (response['error']) {

@@ -20,7 +20,11 @@ export class HttpService {
     return this.http.post('http://localhost:8000/user/signup', signupData, {headers: this.headers})
   }
 
-  getKanji(level: number): Observable<any> {
+  getKanjiLevel(level: number): Observable<any> {
     return this.http.get(`http://localhost:8000/kanji/n${level}`, {headers: this.headers})
+  }
+
+  getKanji(level: number, kanji: string): Observable<object> {
+    return this.http.get(`http://localhost:8000/kanji/n${level}/${kanji}`, {headers: this.headers})
   }
 }

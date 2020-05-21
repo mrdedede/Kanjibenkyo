@@ -54,6 +54,22 @@ def get_level(level):
         query_list.append(data)
     return {"data": query_list}
 
+@app.route('/kanji/<level>/<kanji>', methods=['GET'])
+def get_kanji(level, kanji):
+    """
+    This route gets an specific kanji from an specific level
+
+    All kanji data used in our database comes from Tanos, http://www.tanos.co.uk/jlpt/skills/kanji/,
+    whose data is licenced under Creative Commons "BY"
+    """
+    db = client['kanji']
+    query_result = db[level].find({'kanji': kanji})
+    query_list = []
+    for data in query_result:
+        del data['_id']
+        query_list.append(data)
+    return {"data": query_list}
+
 # User-related routes:
 
 @app.route('/user/login', methods=['POST'])
