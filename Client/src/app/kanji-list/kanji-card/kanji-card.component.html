@@ -1,1 +1,18 @@
-<p>kanji-card works!</p>
+<div class="container">
+  <div class="row jumbotron">
+    <div class="col-md-4">
+      <h1 class="kanji">{{curKanji.kanji}}</h1>
+    </div>
+    <div class="col-md-8 border-left"><hr>
+      Kun:　<span *ngFor="let kunYomi of curKanji.kun_yomi">{{ kunYomi }}　</span><hr>
+      On:　<span *ngFor="let onYomi of curKanji.on_yomi">{{ onYomi }}　</span><hr>
+      Meaning:　<span *ngFor="let english of curKanji.english">{{ english }}　</span><hr>
+    </div>
+  </div>
+  <div *ngIf="loginService.loginInfo['kanji_known'].includes(curKanji.kanji); else: notStudied">
+    <span class="dot studied-kanji"></span>
+  </div>
+  <ng-template #notStudied>
+    <span class="dot not-studied"></span>
+  </ng-template>
+</div>

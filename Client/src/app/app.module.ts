@@ -13,9 +13,10 @@ import { NotLoggedComponent } from './home/not-logged/not-logged.component'
 import { LoggedComponent } from './home/logged/logged.component'
 import { FooterComponent } from './footer/footer.component'
 import { SidebarComponent } from './home/sidebar/sidebar.component'
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './signup/signup.component'
 import { KanjiListComponent } from './kanji-list/kanji-list.component'
-import { KanjiCardComponent } from './kanji-list/kanji-card/kanji-card.component'
+import { KanjiCardComponent } from './kanji-list/kanji-card/kanji-card.component';
+import { AboutComponent } from './about/about.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { KanjiCardComponent } from './kanji-list/kanji-card/kanji-card.component
     SidebarComponent,
     SignupComponent,
     KanjiListComponent,
-    KanjiCardComponent
+    KanjiCardComponent,
+    AboutComponent
   ],
   imports: [
     FormsModule,

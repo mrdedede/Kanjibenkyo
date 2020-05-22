@@ -10,6 +10,7 @@ import { LoginService } from '../shared/login.service'
 })
 export class KanjiListComponent implements OnInit {
   kanjiList = []
+  curLevel: number
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -18,7 +19,8 @@ export class KanjiListComponent implements OnInit {
     ) { }
   
   ngOnInit() {
-    this.httpService.getKanjiLevel(this.getLevel()).subscribe(data => {
+    this.curLevel = this.getLevel()
+    this.httpService.getKanjiLevel(this.curLevel).subscribe(data => {
       this.kanjiList = data.data
     })
   }

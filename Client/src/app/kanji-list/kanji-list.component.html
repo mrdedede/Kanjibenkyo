@@ -5,7 +5,11 @@
     <div class="col-md-2 text-center" *ngFor="let kanji of kanjiList">
       <div class="kanji-card {{ loginService.loginInfo['kanji_known'].includes(kanji.kanji) ?
       'studied-kanji' : 'not-studied' }}">
-        <h1 class="kanji"><a href="#" class="text-dark">{{kanji.kanji}}</a></h1>
+        <h1 class="kanji">
+          <a routerLink="{{kanji.kanji}}" class="text-dark">
+            {{kanji.kanji}}
+          </a>
+        </h1>
       </div>
     </div>
   </div>
