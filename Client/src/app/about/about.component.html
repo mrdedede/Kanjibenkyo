@@ -2,5 +2,247 @@
   <div class="text-center startpoint">
     <h1>Welcome to Kanben!</h1>
     <h3 class="kanji">漢勉へようこそ！</h3>
+    <p class="subtitle">
+      Here may lie the answers for some of your questions. If you can't find it, please do not
+      hesitate in contacting us by e-mail.
+    </p>
+    <div class="all-questions">
+      <div class="card">
+        <div class="card-header" id="headerOne">
+          <button class="btn btn-link" data-toggle="collapse"
+            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Where do we get our data from?
+          </button>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headerOne">
+          <div class="card-body text-left">
+            Kanben uses several sources of data, here you can find information about all of them:
+            <hr>
+            <h3>
+              <a href="http://www.tanos.co.uk/jlpt/" target="_blank">
+                Jonathan Waller‘s JLPT Resources page
+              </a>
+            </h3>
+            <p>
+              Information about kanjis and its respective JLPT level comes from Jonathan Waller's
+              JLPT resources page at tanos.
+            </p>
+            <hr>
+            <h3>
+              <a href="https://tatoeba.org/eng/" target="_blank">Tatoeba</a>
+            </h3>
+            <p>
+              All our example sentences comes the Tatoeba Project, whose data is released under
+              CC-BY 2.0 FR
+            </p>
+            <hr>
+            <br>
+            <h3 class="text-center">Special Thanks</h3>
+            <hr>
+            <h4>
+              <a href="https://twitter.com/kimtaro" target="_blank">Kim Ahlström</a>
+            </h4>
+            <p>
+              Immense thanks to Kim Ahlström, who conceded us the usage of his 
+              <a href="https://jisho.org/about" target="_blank">Jisho.org</a> project's API during
+              the beginning of our project development, as well as offered some guidance related
+              to the next steps.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headerTwo">
+          <button class="btn btn-link" data-toggle="collapse"
+            data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            I can not remember my password, what should I do?
+          </button>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headerTwo">
+          <div class="card-body text-left">
+            <p>
+              Currently, we unfortunatelly don't have any other approach besides sending an e-mail
+              to our support team from the e-mail you have created your account with and ask them to
+              enable some kind of password-changer link.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headerThree">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree"
+            aria-expanded="true" aria-controls="collapseThree">
+            I've experienced a bug. How can I report it?
+          </button>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headerThree">
+          <div class="card-body text-left">
+            <p>
+              There are, currently, two ways you could do so:
+            </p>
+            <hr>
+            <h3>
+              <a href="https://github.com/mrdedede/Kanjibenkyo/issues" target="_blank">
+                Open a issue at our github repo
+              </a>
+            </h3>
+            <p>
+              This option is recommended for any bugs that may be related to coding issues.
+              Examples of such bugs may be:
+            </p>
+            <ul>
+              <li>404 Error popping up when trying to access some page in the app</li>
+              <li>Authentication not working, or, at least, not properly</li>
+              <li>Page not loading or some data not loading inside it</li>
+              <li>Beign blocked to do some activities, when you actually could do them</li>
+            </ul>
+            <hr>
+            <h3>
+              <a>Send us an e-mail with the [BUG] tag</a>
+            </h3>
+            <p>
+              This option is preferred if the bugs you've found or the errors you've experienced
+              are fruit of a bad desing.
+              Examples of such bugs may be:
+            </p>
+            <ul>
+              <li>Footer or header not properly positioned in a page</li>
+              <li>
+                Any drawing/jumbotron being out of its place or with some text that goes through it
+              </li>
+            </ul>
+            <hr>
+            <p>
+              Keep in mind that those are just recommendations. Design issues can also be posted at
+              Github issues' portal. Keep in mind that issues reported through github will probably
+              be solved first.
+            </p>
+            <br>
+            <p>
+              Here are some suggestions to make your bug report the best as possible:
+            </p>
+            <ul>
+              <li>Tell us which page you were in before the current one</li>
+              <li>
+                How many different processes were happening at the same time? <br>
+                <small>For instance:</small>
+                <ul>
+                  <li>Downloading data for two different kanji = 2 processes</li>
+                  <li>Logging in = 1 process</li>
+                  <li>Logging out and getting kanji data = 2 processes</li>
+                </ul>
+              </li>
+              <li>Could you replicate it? (Do it twice or more times)</li>
+              <li>
+                Did the console report any errors?
+                <br>
+                <small>
+                  The console is the window that looks like a command line input that appears
+                  when you inspect a page, probably the one after the window with the html tags.
+                </small>
+                <ul>
+                  <li>What are them?</li>
+                  <li>Did you receive any status code?</li>
+                  <li>Could you copy and paste such errors for us?</li>
+                </ul>
+              </li>
+              <li>Can you send us a print related to the error?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headerFour">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour"
+              aria-expanded="true" aria-controls="collapseFour">
+              I have a suggestion! How can I tell you?
+            </button>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headerFour">
+            <div class="card-body text-left">
+              <p>
+                In this case, it is preferred that you send us an e-mail with the [SUGGESTION] tag
+                and, then, if your suggestion is indeed approved by us, we will place it in our
+                github project, so it will be implemented in a future version.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headerFive">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFive"
+              aria-expanded="true" aria-controls="collapseFive">
+              I have some feedback! How can I tell you?
+            </button>
+          </div>
+          <div id="collapseFive" class="collapse" aria-labelledby="headerFive">
+            <div class="card-body text-left">
+              <p>
+                Feedback is always good, but keep in mind our team is currently working totally
+                focused in the project's development, so keep in mind we may actually take some time
+                to read yours.
+              </p>
+              <hr>
+              <h3>
+                I have good feedback!
+              </h3>
+              <p>
+                We're really thankful you liked our platform.
+                The best feedback one can give us is to recommend our platform to some friends who
+                are also trying to learn kanji.
+                Besides that, here is a list of things you could do for us:
+              </p>
+              <ul>
+                <li>Review our platform in a website that has reviews about us.</li>
+                <li>Star our repo at github, if you have access to it.</li>
+                <li>Keep studying kanji with us.</li>
+                <li>Send us an e-mail! (Keep in mind it may take some time to read it)</li>
+              </ul>
+              <hr>
+              <h3>
+                I have bad feedback!
+              </h3>
+              <p>
+                We're really sorry you're not enjoying your experience with Kanben.
+                Here are some things you could do show us your unhappiness:
+              </p>
+              <ul>
+                <li>
+                  If you have suggestions,
+                  send us an e-mail with the tag [SUGGESTION] and tell us them!
+                </li>
+                <li>Review our platform in a website that has reviews about us.</li>
+                <li>Send us an e-mail! (Keep in mind it may take some time to read it)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headerSix">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix"
+              aria-expanded="true" aria-controls="collapseSix">
+              I believe some kanji data is wrong
+            </button>
+          </div>
+          <div id="collapseSix" class="collapse" aria-labelledby="headerSix">
+            <div class="card-body text-left">
+              <p>Please follow the same steps as if you had a suggestion.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headerSeven">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven"
+              aria-expanded="true" aria-controls="collapseSeven">
+              I can translate a phrase that doesn't have a translation!
+            </button>
+          </div>
+          <div id="collapseSeven" class="collapse" aria-labelledby="headerSeven">
+            <div class="card-body text-left">
+              <p>Please follow the same steps as if you had a suggestion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
