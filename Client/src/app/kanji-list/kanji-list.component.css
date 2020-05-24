@@ -16,3 +16,13 @@
   border-radius: 10px;
   margin-bottom: 10px;
 }
+
+.btn-kanben {
+  color: #D3E6A5;
+  background-color: #BD3B1B;
+  margin-bottom: 10px;
+}
+
+.supermargin {
+  margin-bottom: 10%;
+}

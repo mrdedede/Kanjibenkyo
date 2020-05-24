@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { HttpService } from '../shared/http.service'
 import { LoginService } from '../shared/login.service'
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-kanji-list',
@@ -15,7 +16,8 @@ export class KanjiListComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     public httpService:HttpService,
-    public loginService:LoginService
+    public loginService:LoginService,
+    public location: Location
     ) { }
   
   ngOnInit() {
