@@ -19,7 +19,7 @@ CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'fireb
 # Creating the API from the APP
 api = Api(app)
 
-# Interface-related routes
+# Kanji-related routes
 
 @app.route('/dictionary/sentence/<kanji>', methods=['GET'])
 def get_sentence(kanji):
@@ -31,7 +31,7 @@ def get_sentence(kanji):
     whose data is released under CC-BY 2.0 FR
     """
     db = client['phrase_data']
-    query_result = db['sentences'].find({"text": {"$regex": f"{kanji}"}})
+    query_result = db['sentences'].find({"text": {"$regex": f"{kanji}"}}).limit(20)
     query_list = []
     for data in query_result:
         del data['_id']
@@ -69,6 +69,24 @@ def get_kanji(level, kanji):
         del data['_id']
         query_list.append(data)
     return {"data": query_list}
+
+@app.route('/user/kanji/new', methods=['POST'])
+def update_known_list():
+    """
+    This route changes the list of the current user's known kanji, whose data is in firebase.
+    """
+    firebase = pyrebase.initialize_app(config.firebase_config)
+    user_info = request.get_json()
+    try:
+        db = firebase.database()
+        new_req = db.child('users').child(util.get_user(user_info['email'])).update({'kanji_known': user_info['kanji_known']})
+        return new_req
+    except requests.HTTPError:
+        return {'error': 'Wrong Password'}
+    except requests.ConnectionError:
+        return {'error': 'Connection Error'}
+    else:
+        return {'error': 'Unknown Error'}
 
 # User-related routes:
 
@@ -115,7 +133,7 @@ def signup():
             new_user_data = {"kanji_known": ""}
             db = firebase.database()
             db.child("users").child(util.get_user(creation['email'])).set(new_user_data)
-            creation['kanji_known'] = ""
+            creation['kanji_known'] = " "
             return creation
         except requests.ConnectionError:
             return {'error': "Connection Error"}

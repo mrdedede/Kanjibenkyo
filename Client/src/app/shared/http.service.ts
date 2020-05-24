@@ -58,4 +58,14 @@ export class HttpService {
   getKanji(level: number, kanji: string): Observable<any> {
     return this.http.get(`http://localhost:8000/kanji/n${level}/${kanji}`, {headers: this.headers})
   }
+
+  /**
+   * Returns the observabçe which will return the status of changes.
+   * 
+   * @param {object} userInfo - Current user's info.
+   */
+  addKanjiToKnownList(userInfo: {}): Observable<any> {
+    return this.http.post(`http://localhost:8000/user/kanji/new`, userInfo,
+      {headers: this.headers})
+  }
 }

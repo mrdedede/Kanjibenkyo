@@ -1,9 +1,12 @@
 .kanji {
   text-align: center;
   margin-top: 5%;
-  font-size: 1000%;
   font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo,
   "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.displayed-kanji {
+  font-size: 1000%;
 }
 
 .border-left {
@@ -15,8 +18,8 @@
 }
 
 .dot {
-  height: 25px;
-  width: 25px;
+  height: .75rem;
+  width: .75rem;
   border-radius: 50%;
   display: inline-block;
 }
@@ -31,4 +34,24 @@
 
 .not-studied {
   background-color: #BD3B1B;
+}
+
+.btn-study {
+  background-color: #D3E6A5;
+  color: #BD3B1B;
+  margin-bottom: 10px;
+}
+
+.btn-study:hover {
+  background-color: #BD3B1B;
+  color: #D3E6A5;
+  margin-bottom: 10px;
+}
+
+.text-centered {
+  padding-bottom: 10px;
+}
+
+.predicting-footer {
+  margin-bottom: 5%;
 }

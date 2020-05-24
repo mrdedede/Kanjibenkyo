@@ -1,16 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { HttpService } from './http.service'
-import { map } from 'rxjs/operators'
-import { LoginService } from './login.service';
-import { Observable } from 'rxjs';
+import { LoginService } from './login.service'
+import { Observable } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class KanjiService {
   curMaxLevel: number
-  curKanji: {}
-  curPhrases: {}
 
   constructor(
     public httpService: HttpService,
@@ -20,6 +17,8 @@ export class KanjiService {
   /**
    * Gets the current user's kanji level as well as those that it succeeded at the test
    * and those that it may not be able to study yet.
+   * 
+   * @returns The list of levels
    */
   getKanjiLevelList() {
     let knownKanji = this.loginService.loginInfo['kanji_known']
@@ -77,26 +76,14 @@ export class KanjiService {
    *  
    * @param {string} kanji - Kanji we are searching for phrases
    * @param {number} curLevel - Level of the kanji we're searching for
+   * 
+   * @returns {Observable} - The Observable that may return the phrase data
    */
-  getKanjiPhrases(kanji: string, curLevel?: number) {
+  getKanjiPhrases(kanji: string, curLevel?: number): Observable<any> {
     if(!curLevel) {
       curLevel = this.curMaxLevel
     }
-    if(this.curKanji['kanji'] == kanji) {
-      if(!this.curPhrases) {
-        this.httpService.getKanjiPhrases(kanji).pipe(map(data => { data.data })).subscribe(data => {
-          this.curPhrases['kanji'] = kanji
-          this.curPhrases['phraseList'] = data
-        })
-      }
-    } else {
-      this.getKanji(kanji, curLevel)
-      this.httpService.getKanjiPhrases(kanji).pipe(map(data => { data.data })).subscribe(data => {
-        this.curPhrases['kanji'] = kanji
-        this.curPhrases['phraseList'] = data
-      })
-    }
-    return this.curPhrases
+    return this.httpService.getKanjiPhrases(kanji)
   }
 
   /**
@@ -104,6 +91,8 @@ export class KanjiService {
    * 
    * @param {string} kanji - Kanji we're searching for info
    * @param {number} curLevel - Level of the kanji we're searching for
+   * 
+   * @returns {Observable} - The Observable that may return the kanji data
    */
   getKanji(kanji: string, curLevel?: number): Observable<any> {
     if(!curLevel) {
@@ -119,5 +108,14 @@ export class KanjiService {
    */
   getCurMaxLevel(): number {
     return this.curMaxLevel
+  }
+
+  /**
+   * Returns the observable that confirms the addition of a kanji to its list.
+   * 
+   * @returns {Observable} - The Observable that will confirm the change.
+   */
+  updateKnownList() {
+    return this.httpService.addKanjiToKnownList(this.loginService.loginInfo)
   }
 }

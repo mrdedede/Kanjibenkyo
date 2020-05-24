@@ -5,8 +5,12 @@
   width:100%;
 }
 
-.small-screens {
+.small-screens-footer {
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+.screens-header {
+  width: 100%;
 }
