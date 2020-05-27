@@ -10,5 +10,5 @@ import { LoginService } from './shared/login.service'
 })
 export class AppComponent {
   title = 'kanjibenkyo'
-  constructor(private loginService: LoginService, private location: Location) {}
+  constructor(public loginService: LoginService, public location: Location) {}
 }

@@ -1,4 +1,4 @@
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, jsonify, request, render_template
 from flask_cors import CORS
 from flask_restful import Resource, Api
 from flask.views import MethodView
@@ -18,6 +18,12 @@ CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'fireb
 
 # Creating the API from the APP
 api = Api(app)
+
+# Test routes
+
+@app.route('/')
+def get_page():
+    return render_template("index.html")
 
 # Kanji-related routes
 

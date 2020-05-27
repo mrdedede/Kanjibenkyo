@@ -3,3 +3,5 @@ __pycache__
 treinamento*
 database
 config.py
+template*
+static
