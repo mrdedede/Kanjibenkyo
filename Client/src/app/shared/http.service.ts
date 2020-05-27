@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 export class HttpService {
   headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', ['localhost:8000'])
+    .set('Access-Control-Allow-Origin', ['localhost:8000', 'mongodb.net', 'pythonanywhere.com',
+    'https://stormy-river-07260.herokuapp.com/'])
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,8 @@ export class HttpService {
    * @param loginData - Inputted User data
    */
   login(loginData: any): Observable<any> {
-    return this.http.post('http://localhost:8000/user/login', loginData, {headers: this.headers})
+    return this.http.post('https://stormy-river-07260.herokuapp.com/user/login', loginData,
+      {headers: this.headers})
   }
 
   /**
@@ -27,7 +29,8 @@ export class HttpService {
    * @param signupData - Inputted User data
    */
   signup(signupData: any): Observable<any> {
-    return this.http.post('http://localhost:8000/user/signup', signupData, {headers: this.headers})
+    return this.http.post('https://stormy-river-07260.herokuapp.com/user/signup', signupData,
+      {headers: this.headers})
   }
 
 
@@ -37,7 +40,8 @@ export class HttpService {
    * @param {number} level - Current Level of studies
    */
   getKanjiLevel(level: number): Observable<any> {
-    return this.http.get(`http://localhost:8000/kanji/n${level}`, {headers: this.headers})
+    return this.http.get(`https://stormy-river-07260.herokuapp.com/kanji/n${level}`,
+      {headers: this.headers})
   }
 
   /**
@@ -46,7 +50,7 @@ export class HttpService {
    * @param {string} kanji - The kanji that we want to get phrases that contain it
    */
   getKanjiPhrases(kanji: string): Observable<any> {
-    return this.http.get(`http://localhost:8000/dictionary/sentence/${kanji}`)
+    return this.http.get(`https://stormy-river-07260.herokuapp.com/dictionary/sentence/${kanji}`)
   }
 
   /**
@@ -56,7 +60,8 @@ export class HttpService {
    * @param kanji - Kanji that the user want to take a look at.
    */
   getKanji(level: number, kanji: string): Observable<any> {
-    return this.http.get(`http://localhost:8000/kanji/n${level}/${kanji}`, {headers: this.headers})
+    return this.http.get(`https://stormy-river-07260.herokuapp.com/kanji/n${level}/${kanji}`,
+      {headers: this.headers})
   }
 
   /**
@@ -65,7 +70,7 @@ export class HttpService {
    * @param {object} userInfo - Current user's info.
    */
   addKanjiToKnownList(userInfo: {}): Observable<any> {
-    return this.http.post(`http://localhost:8000/user/kanji/new`, userInfo,
+    return this.http.post(`https://stormy-river-07260.herokuapp.com/user/kanji/new`, userInfo,
       {headers: this.headers})
   }
 }

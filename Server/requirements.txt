@@ -1,0 +1,7 @@
+flask
+gunicorn
+pymongo
+pyrebase
+flask_cors
+flask_restful
+dnspython
