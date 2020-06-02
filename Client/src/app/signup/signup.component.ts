@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { NgForm } from '@angular/forms'
 
 import { LoginService } from '../shared/login.service'
@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+  @ViewChild('signUpForm', null) signUpForm: NgForm
   errors: string[]
   loading: boolean
   
@@ -26,6 +26,7 @@ export class SignupComponent implements OnInit {
    * @param form {NgForm} - Refers to the SignUp Form being exposed to the user in the moment
    */
   onSubmit(form: NgForm) {
+    let curLogin = form.form.value.email
     this.errors = []
     if(form.form.pristine) {
       this.errors.push("Sorry, you can't have a user with no e-mail.")
@@ -53,6 +54,13 @@ export class SignupComponent implements OnInit {
             }
           }
           this.loading = false
+          setTimeout(() => {
+            this.signUpForm.setValue({
+              email: curLogin,
+              password: "",
+              passCheck: ""
+            })
+          })
         })
       }
     } else {

@@ -23,6 +23,11 @@
   margin-bottom: 10px;
 }
 
-.supermargin {
+.unauthorized-margin-bottom {
   margin-bottom: 10%;
+}
+
+.supermargin {
+  margin-top: 20%;
+  margin-bottom: 20%
 }

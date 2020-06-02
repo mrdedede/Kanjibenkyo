@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { NgForm } from '@angular/forms'
+import { Component, OnInit, ViewChild } from '@angular/core'
+import { NgForm, NgModel } from '@angular/forms'
 
 import { LoginService } from '../shared/login.service'
 import { Router } from '@angular/router'
@@ -11,12 +11,13 @@ import { Location } from '@angular/common'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
+  @ViewChild('loginForm', null) loginForm: NgForm
   failed: boolean = false
   loading: boolean
   errormsg: string
 
-  constructor(public loginService: LoginService,
+  constructor(
+    public loginService: LoginService,
     private router: Router,
     public location: Location) { }
 
@@ -25,6 +26,8 @@ export class LoginComponent {
    * @param form {NgForm}
    */
   onSubmit(form: NgForm) {
+    let curLogin = form.form.value.email
+    console.log(curLogin)
     this.loading = true
     this.loginService.login(form.form.value).subscribe(response => {
       if(! response['error']) {
@@ -47,6 +50,10 @@ export class LoginComponent {
         }
       }
       this.loading = false
+      setTimeout(() => {
+        this.loginForm.setValue({email: curLogin, password: ""})
+      })
+      console.log(form)
     })
   }
 }

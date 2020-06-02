@@ -1,5 +1,5 @@
 <div *ngIf="loginService.logged; else: unauthorized">
-  <div class="container">
+  <div class="container" *ngIf="!isLoading; else: loading">
     <h1 class="text-center">JLPT N{{getLevel()}}</h1>
     <br>
     <div class="row">
@@ -15,12 +15,19 @@
       </div>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="container text-center text-danger supermargin">
+      <div class="spinner-border text-secondary text-center display-1" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
   <div class="text-center">
     <button class="btn btn-kanben" (click)="location.back()">Go back</button>
   </div>
 </div>
 <ng-template #unauthorized>
-  <div class="text-danger text-center display-1 supermargin">
+  <div class="text-danger text-center display-1 unauthorized-margin-bottom">
     <br>
     Unauthorized Access. <br>
     Please log in to perform this activity.

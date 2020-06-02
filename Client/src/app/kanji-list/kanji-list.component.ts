@@ -12,6 +12,7 @@ import { Location } from '@angular/common'
 export class KanjiListComponent implements OnInit {
   kanjiList = []
   curLevel: number
+  isLoading: boolean
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,8 +23,10 @@ export class KanjiListComponent implements OnInit {
   
   ngOnInit() {
     this.curLevel = this.getLevel()
+    this.isLoading = true
     this.httpService.getKanjiLevel(this.curLevel).subscribe(data => {
       this.kanjiList = data.data
+      this.isLoading = false
     })
   }
 
