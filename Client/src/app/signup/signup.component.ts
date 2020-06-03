@@ -46,8 +46,8 @@ export class SignupComponent implements OnInit {
               case "Unknown Error":
                 this.errors.push("Sorry, it seems like an Unknown Error has happened.")
               case "HTTP Error":
-                this.errors.push(`Sorry, but it seems like your request has been rejected.
-                  What about trying a stronger password?`)
+                this.errors.push(`Password too weak, try making it longer and adding some special
+                  characters.`)
               case "Connection Error":
                 this.errors.push(`Sorry, it seems like we have got a connection error.
                   Please, try again later.`)
