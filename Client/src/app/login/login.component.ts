@@ -27,7 +27,6 @@ export class LoginComponent {
    */
   onSubmit(form: NgForm) {
     let curLogin = form.form.value.email
-    console.log(curLogin)
     this.loading = true
     this.loginService.login(form.form.value).subscribe(response => {
       if(! response['error']) {
@@ -51,7 +50,10 @@ export class LoginComponent {
       }
       this.loading = false
       setTimeout(() => {
-        this.loginForm.setValue({email: curLogin, password: ""})
+        this.loginForm.setValue({
+          email: curLogin,
+          password: ""
+        })
       })
       console.log(form)
     })
