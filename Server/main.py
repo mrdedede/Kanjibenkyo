@@ -23,7 +23,14 @@ api = Api(app)
 # Test routes
 
 @app.route('/')
+@app.route('/home')
+@app.route('/login')
+@app.route('/signup')
+@app.route('/level')
+@app.route('/about')
 def get_page():
+    # Remember that, when deploying, we should not place --base-href and also
+    # the path /static should be placed at the url and href attributes manually
     return render_template("index.html")
 
 # Kanji-related routes

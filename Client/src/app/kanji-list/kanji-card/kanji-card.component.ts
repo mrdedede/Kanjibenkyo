@@ -31,6 +31,11 @@ export class KanjiCardComponent implements OnInit {
     let kanjiSubscription = this.kanjiService.getKanji(kanjiObject['kanji'], kanjiObject['level'])
     kanjiSubscription.subscribe(data => {
       this.curKanji = data.data[0]
+      if(this.curKanji.kun_yomi.length == 0) {
+        this.curKanji.kun_yomi.push("This kanji has no kun reading")
+      } else if(this.curKanji.on_yomi.length == 0) {
+        this.curKanji.on_yomi.push("This kanji has no on reading")
+      }
       this.isStudied()
     })
   }
