@@ -7,7 +7,7 @@
         <div class="kanji-card {{ loginService.loginInfo['kanji_known'].includes(kanji.kanji) ?
         'studied-kanji' : 'not-studied' }}">
           <h1 class="kanji">
-            <a routerLink="{{kanji.kanji}}" class="text-dark">
+            <a routerLink="{{kanji.kanji}}" class="text-dark text-decoration-none">
               {{kanji.kanji}}
             </a>
           </h1>

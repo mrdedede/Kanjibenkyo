@@ -24,20 +24,29 @@
 <br>
 <hr>
 <br>
-<h2 class="text-center">Last Viewed Kanji</h2>
-<div class="container jumbotron kanji-card">
-  <div class="row">
-    <div class="col-md-4 text-center middle">
-      <h1 class="display-1">{{ lastKanji.kanji }}</h1>
-    </div>
-    <div class="col-md-8 border-left"><br>
-      JLPT level:　<span>N{{ curLevel }}</span><hr>
-      Kun:　<span *ngFor="let kunYomi of lastKanji.kun_yomi">{{ kunYomi }}　</span><hr>
-      On:　<span *ngFor="let onYomi of lastKanji.on_yomi">{{ onYomi }}　</span><hr>
-      Meaning:　<span *ngFor="let english of lastKanji.english">{{ english }}　</span><hr>
+<div *ngIf="lastKanji.kanji != ''; else: noProgress">
+  <h2 class="text-center">Last Viewed Kanji</h2>
+  <div class="container jumbotron kanji-card">
+    <div class="row">
+      <div class="col-md-4 text-center middle">
+        <h1 class="display-1">{{ lastKanji.kanji }}</h1>
+      </div>
+      <div class="col-md-8 border-left"><br>
+        JLPT level:　<span>N{{ curLevel }}</span><hr>
+        Kun:　<span *ngFor="let kunYomi of lastKanji.kun_yomi">{{ kunYomi }}　</span><hr>
+        On:　<span *ngFor="let onYomi of lastKanji.on_yomi">{{ onYomi }}　</span><hr>
+        Meaning:　<span *ngFor="let english of lastKanji.english">{{ english }}　</span><hr>
+      </div>
     </div>
   </div>
 </div>
+<ng-template #noProgress>
+  <div class="container jumbotron kanji-card text-center">
+    <h2>It looks like you haven't studied any kanji so far...</h2>
+    <br>
+    <a routerLink="../level/{{curLevel}}" class="btn btn-kanben">Study Now!</a>
+  </div>
+</ng-template>
 <br>
 <hr>
 <br>
