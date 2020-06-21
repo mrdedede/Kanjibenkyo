@@ -14,8 +14,7 @@ client = pymongo.MongoClient(config.mongo, connectTimeoutMS=30000, socketTimeout
 
 # Creating an instance with Flask
 app = Flask(__name__)
-CORS(app, cross_origin=['jisho.org', 'localhost:4200', 'firebaseapp.com', 'firebaseio.com',
-    'mongodb.net', 'pythonanywhere.com'])
+CORS(app, cross_origin=['localhost:4200', 'firebaseapp.com', 'firebaseio.com', 'mongodb.net'])
 
 # Creating the API from the APP
 api = Api(app)

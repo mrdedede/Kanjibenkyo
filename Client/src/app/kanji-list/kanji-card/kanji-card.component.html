@@ -10,8 +10,10 @@
         Meaning:　<span *ngFor="let english of curKanji.english">{{ english }}　</span><hr>
       </div>
     </div>
-    <p *ngIf="!marked"
-      class="text-center">
+    <div class="text-center" *ngIf="marked">
+      <button class='btn btn-study' (click)="unmarkKanji()">Unmark it as studied</button>
+    </div>
+    <p *ngIf="!marked" class="text-center">
       <span class="dot not-studied"></span> This is a new kanji to you!
     </p>
     <div class="row">

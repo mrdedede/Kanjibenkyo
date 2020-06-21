@@ -80,6 +80,21 @@ export class KanjiCardComponent implements OnInit {
   }
 
   /**
+   * Marks the current kanji as not studied, as well as send this change to firebase
+   */
+  unmarkKanji() {
+    this.isLoading = true
+    let curStatus = this.loginService.loginInfo['kanji_known'].replace(this.curKanji.kanji, "")
+    this.loginService.loginInfo['kanji_known'] = curStatus
+    this.kanjiService.updateKnownList().subscribe(data => {
+      if(data) {
+        this.marked = false
+        this.isLoading = false
+      }
+    })
+  }
+
+  /**
    * In the future, this will redirect the user to a test page.
    */
   takeTest() {
